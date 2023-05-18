@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOOLE MAP</title>
+    <style>
+        #map{
+            width: 1400px;
+            height: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA2nOIPaiXt9UwfmctAjdLijqoyARrPnE&callback=initMap">
+    </script>
+    <!-- <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script> -->
+
+
+    <script>
+        
+
+        let map;
+
+                // Initialize and add the map
+        function initMap() {
+        // The location of Uluru
+        const millmerran = {lat:-27.876970759903912, lng:151.26215940377045};
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: millmerran
+        });
+
+        const infowindow = new google.maps.InfoWindow({
+                content: "<h3>澳洲小鎮以前住過的家</h3>",
+                ariaLabel: "Millmerran",
+            });
+
+        const img = "img/maker.png"
+
+        for(let i = 0; i < locations.length; i++){
+            const marker = new google.maps.Marker({
+            position: locations[i],
+            map: map,
+            title: post[i],
+            icon: img
+        });
+
+            const infowindow = new google.maps.InfoWindow({
+                content: content[i],
+                ariaLabel: "Millmerran",
+            });
+
+            marker.addListener("click", () => {
+            infowindow.open({
+            anchor: marker,
+            map,
+            });
+        });
+            
+        }
+
+        
+
+        }
+        const content = ["<h3>澳洲小鎮以前住過的家</h3>","<h3>超市</h3>","<h3>連鎖超市</h3>","<h3>醫院</h3>","<h3>運動中心</h3>","<h3>加油站</h3>","小鎮蛋廠","<h3>Pittsworth的大型連鎖超市</h3>"]
+        const post = ["澳洲小鎮以前住過的家","FoodWorks","IGA Local Grocer Millmerran","Millmerran Multi-Purpose Health Service","Millmerran Indoor Sports Centre","bp加油站","D.A Hall Egg processing","Woolworths Pittsworth"]
+        const locations = [
+        { lat:-27.876970759903912, lng:151.26215940377045},
+        { lat: -27.874330348431297, lng: 151.26598417408965 },
+        { lat: -27.875943157574945, lng: 151.26969698716266 },
+        { lat: -27.87855969200411, lng: 151.26290930143585 },
+        { lat: -27.878773974347357, lng: 151.26450415241223 },
+        { lat: -27.87780975531288, lng: 151.26972437714474 },
+        { lat: -27.852285208194413, lng: 151.32738784479372 },
+        { lat: -27.716690749452237, lng: 151.6312274411672 }
+
+        ];
+
+        window.initMap = initMap;
+    </script>
+    
+</body>
+</html>

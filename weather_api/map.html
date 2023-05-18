@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOOLE MAP</title>
+    <style>
+        #map{
+            width: 1400px;
+            height: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA2nOIPaiXt9UwfmctAjdLijqoyARrPnE&callback=initMap">
+    </script>
+
+    <script>
+        let map;
+
+                // Initialize and add the map
+        function initMap() {
+        // The location of Uluru
+        const millmerran = {lat:-27.876970759903912, lng:151.26215940377045}
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
+            center: millmerran,
+        });
+        // The marker, positioned at Uluru
+        const img = "img/maker.png"
+        const marker = new google.maps.Marker({
+            position: millmerran,
+            map: map,
+            title: "Millmerran",
+            icon: img
+        });
+        const infowindow = new google.maps.InfoWindow({
+            content: "<h3>澳洲小鎮以前住過的家</h3>",
+            ariaLabel: "Millmerran",
+        });
+        marker.addListener("click", () => {
+            infowindow.open({
+            anchor: marker,
+            map,
+            });
+        });
+        }
+
+        window.initMap = initMap;
+    </script>
+    
+</body>
+</html>
